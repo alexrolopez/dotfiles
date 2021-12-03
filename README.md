@@ -6,6 +6,8 @@ Using ansible for the whole installation, plus a small bootstrap script (install
 - Git: Installs git if needed, along a minimal global gitconfig and gitignore.
 - Apt: Installs base packages.
 
+## Installation
+
 ```bash
 $ git clone git@github.com:alexrolopez/dotfiles ~/.dotfiles
 
