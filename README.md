@@ -14,7 +14,7 @@ $ git clone git@github.com:alexrolopez/dotfiles ~/.dotfiles
 # 1st time, 0 requirements setup:
 $ GIT_USER_NAME="My Name" GIT_USER_EMAIL="my_email@example.com" ~/.dotfiles/install.sh
 
-# Subsequent times, it is enough to run:
+# Subsequent times it is enough to run:
 $ ~/.dotfiles/install.sh
 ```
 
