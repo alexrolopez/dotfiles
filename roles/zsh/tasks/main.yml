@@ -1,0 +1,26 @@
+- name: Install zsh package
+  apt:
+    name: zsh
+    state: latest
+  become: yes
+
+- name: Set default shell to zsh
+  shell: usermod --shell $(which zsh) {{ ansible_env.USER }}
+  become: yes
+
+- name: Check for oh-my-zsh installation
+  stat:
+    path: "~/.oh-my-zsh"
+  register: oh_my_zsh_stat
+
+- name: Install oh-my-zsh
+  raw: 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"'
+  when: not oh_my_zsh_stat.stat.exists
+
+- name: Link .zshrc
+  file:
+    src: "{{ dotfiles_home }}/roles/zsh/files/.zshrc"
+    dest: "{{ dotfiles_user_home }}/.zshrc"
+    state: link
+    force: yes
+
