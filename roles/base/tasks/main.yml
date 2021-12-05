@@ -2,38 +2,33 @@
   apt:
     update_cache: yes
   become: yes
-  become_user: root
 
 - name: Apt upgrade
   apt: 
     upgrade: yes
   become: yes
-  become_user: root
 
 - name: Install apt packages
   apt:
     pkg:
-    - ansible
-    - build-essential
-    - curl
-    - fzf
-    - htop
-    - shellcheck
-    - tldr
-    - tree 
-    - wget
+      - ansible
+      - build-essential
+      - curl
+      - fzf
+      - htop
+      - shellcheck
+      - tldr
+      - tree 
+      - wget
     state: latest
   become: yes
-  become_user: root
 
 - name: Apt autoclean
   apt:
     autoclean: yes
   become: yes
-  become_user: root
 
 - name: Apt autoremove
   apt:
     autoremove: yes
   become: yes
-  become_user: root
