@@ -4,6 +4,6 @@
     - role: git
       tags:
         - git
-    - role: apt
+    - role: base
       tags:
-        - apt
+        - base
