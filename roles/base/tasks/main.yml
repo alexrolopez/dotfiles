@@ -1,16 +1,6 @@
-- name: Apt update
-  apt:
-    update_cache: yes
-  become: yes
-
-- name: Apt upgrade
-  apt: 
-    upgrade: yes
-  become: yes
-
 - name: Install apt packages
   apt:
-    pkg:
+    name:
       - ansible
       - build-essential
       - curl
@@ -21,14 +11,5 @@
       - tree 
       - wget
     state: latest
-  become: yes
-
-- name: Apt autoclean
-  apt:
-    autoclean: yes
-  become: yes
-
-- name: Apt autoremove
-  apt:
-    autoremove: yes
+    update_cache: yes
   become: yes
