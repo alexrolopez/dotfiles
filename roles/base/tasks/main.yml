@@ -6,6 +6,9 @@
       - curl
       - fzf
       - htop
+      - memcached
+      - postgresql
+      - redis
       - shellcheck
       - tldr
       - tree 
