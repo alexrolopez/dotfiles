@@ -1,6 +1,6 @@
 # Alex's dotfiles
 Development environment for any apt-based linux distro (Ubuntu, Debian, etc).
-Using ansible for the whole installation, plus a small bootstrap script (install.sh).
+Using ansible for the whole installation, plus a small bootstrap script (`install.sh`).
 
 This setup is tailored for my specific needs, **USE AT YOUR OWN RISK**.
 I recommend understanding everything first, and then bulding a setup for your specific needs, over just forking this repo.
