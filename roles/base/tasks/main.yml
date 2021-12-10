@@ -4,8 +4,11 @@
       - ansible
       - build-essential
       - curl
+      - docker-compose
       - fzf
       - htop
+      - jq
+      - make
       - memcached
       - postgresql
       - redis
