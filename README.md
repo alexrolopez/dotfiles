@@ -6,11 +6,11 @@ This setup is tailored for my specific needs, **USE AT YOUR OWN RISK**.
 I recommend understanding everything first, and then bulding a setup for your specific needs, over just forking this repo.
 
 ## Included roles
-- Git: Installs git if needed, along a minimal global gitconfig and gitignore. **WARNING**: this will override existing global gitconfig.
-- Base : Installs base packages (apt packages only at the moment).
-- Zsh: Installs zsh shell, sets as default, installs oh-my-zsh with powerlevel10k theme.
-- Asdf: Installs asdf version manager.
-- Ruby: Installs various Ruby versions and default gems (using asdf).
+- git: Installs git if needed, along a minimal global gitconfig and gitignore. **WARNING**: this will override existing global gitconfig.
+- base : Installs base packages (apt packages only at the moment).
+- zsh: Installs zsh shell, sets as default, installs oh-my-zsh with powerlevel10k theme.
+- asdf: Installs asdf version manager.
+- ruby: Installs various Ruby versions and default gems (using asdf).
 
 ## Installation
 
