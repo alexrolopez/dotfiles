@@ -35,4 +35,4 @@ fi
 
 ansible-playbook -i ~/.dotfiles/hosts ~/.dotfiles/dotfiles.yml --ask-become-pass --tags "$tags"
 
-echo "Dotfiles installed successfully. Development environment ready!"
+echo "Development environment ready! Log out and log back in for new zsh shell to take effect."

@@ -12,6 +12,7 @@
       - shellcheck
       - tldr
       - tree 
+      - vim
       - wget
     state: latest
     update_cache: yes
