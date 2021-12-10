@@ -3,3 +3,9 @@
     repo: git@github.com:asdf-vm/asdf.git
     dest: "~/.asdf"
     version: v0.9.0
+- name: Link .asdfrc
+  file:
+    src: "{{ dotfiles_home }}/roles/asdf/files/asdfrc"
+    dest: "{{ dotfiles_user_home }}/.asdfrc"
+    state: link
+    force: yes
