@@ -19,7 +19,7 @@
 
 - name: Link .zshrc
   file:
-    src: "{{ dotfiles_home }}/roles/zsh/files/.zshrc"
+    src: "{{ dotfiles_home }}/roles/zsh/files/zshrc"
     dest: "{{ dotfiles_user_home }}/.zshrc"
     state: link
     force: yes
@@ -32,7 +32,7 @@
 
 - name: Link .p10k.zsh
   file:
-    src: "{{ dotfiles_home }}/roles/zsh/files/.p10k.zsh"
+    src: "{{ dotfiles_home }}/roles/zsh/files/p10k.zsh"
     dest: "{{ dotfiles_user_home }}/.p10k.zsh"
     state: link
     force: yes
