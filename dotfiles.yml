@@ -13,3 +13,6 @@
     - role: asdf
       tags:
         - asdf
+    - role: ruby
+      tags:
+        - ruby
