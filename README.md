@@ -26,6 +26,7 @@ $ ~/.dotfiles/install.sh
 
 ## TODO
 - Compatibility with other systems (MacOS, yum, pacman)
+- Proper dependencies between roles/tags
 
 ## Inspiration
 - https://medium.com/espinola-designs/manage-your-dotfiles-with-ansible-6dbedd5532bb (https://github.com/kespinola/dotfiles)
