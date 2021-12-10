@@ -1,6 +1,6 @@
 # Alex's dotfiles
 Development environment for any apt-based linux distro (Ubuntu, Debian, etc).
-Using ansible for the whole installation, plus a small bootstrap script (install.sh).
+Using ansible for the whole installation, plus a small bootstrap script (`install.sh`).
 
 This setup is tailored for my specific needs, **USE AT YOUR OWN RISK**.
 I recommend understanding everything first, and then bulding a setup for your specific needs, over just forking this repo.
@@ -9,7 +9,7 @@ I recommend understanding everything first, and then bulding a setup for your sp
 - Git: Installs git if needed, along a minimal global gitconfig and gitignore. **WARNING**: this will override existing global gitconfig.
 - Base : Installs base packages (apt packages only at the moment).
 - Zsh: Installs zsh shell, sets as default, installs oh-my-zsh with powerlevel10k theme.
-- Asdf: Installs asdf tools version manager.
+- Asdf: Installs asdf version manager.
 - Ruby: Installs various Ruby versions and default gems (using asdf).
 
 ## Installation
@@ -26,6 +26,7 @@ $ ~/.dotfiles/install.sh
 
 ## TODO
 - Compatibility with other systems (MacOS, yum, pacman)
+- Proper dependencies between roles/tags
 
 ## Inspiration
 - https://medium.com/espinola-designs/manage-your-dotfiles-with-ansible-6dbedd5532bb (https://github.com/kespinola/dotfiles)
