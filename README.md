@@ -8,6 +8,9 @@ I recommend understanding everything first, and then bulding a setup for your sp
 ## Included roles
 - Git: Installs git if needed, along a minimal global gitconfig and gitignore. **WARNING**: this will override existing global gitconfig.
 - Base : Installs base packages (apt packages only at the moment).
+- Zsh: Installs zsh shell, sets as default, installs oh-my-zsh with powerlevel10k theme.
+- Asdf: Installs asdf tools version manager.
+- Ruby: Installs various Ruby versions and default gems (using asdf).
 
 ## Installation
 
