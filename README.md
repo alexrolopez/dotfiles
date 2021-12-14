@@ -8,8 +8,8 @@ I recommend understanding everything first, and then bulding a setup for your sp
 ## Included roles
 - git: Installs git if needed, along a minimal global gitconfig and gitignore. **WARNING**: this will override existing global gitconfig.
 - base : Installs base packages (apt packages only at the moment).
-- zsh: Installs zsh shell, sets as default, installs oh-my-zsh with powerlevel10k theme.
 - asdf: Installs asdf version manager.
+- zsh: Installs zsh shell, sets as default, installs oh-my-zsh with powerlevel10k theme.
 - ruby: Installs various Ruby versions and default gems (using asdf).
 
 ## Installation
@@ -26,7 +26,6 @@ $ ~/.dotfiles/install.sh
 
 ## TODO
 - Compatibility with other systems (MacOS, yum, pacman)
-- Proper dependencies between roles/tags
 
 ## Inspiration
 - https://medium.com/espinola-designs/manage-your-dotfiles-with-ansible-6dbedd5532bb (https://github.com/kespinola/dotfiles)
