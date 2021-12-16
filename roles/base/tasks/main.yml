@@ -4,8 +4,12 @@
       - ansible
       - build-essential
       - curl
+      - dirmngr
       - docker-compose
       - fzf
+      - gawk
+      - git
+      - gpg
       - htop
       - jq
       - make
@@ -17,6 +21,7 @@
       - tree 
       - vim
       - wget
+      - zsh
     state: latest
     update_cache: yes
   become: yes

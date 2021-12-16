@@ -11,6 +11,3 @@
     dest: "{{ dotfiles_user_home }}/.asdfrc"
     state: link
     force: yes
-
-- name: Make asdf command available straight away
-  shell: ". $HOME/.asdf/asdf.sh"

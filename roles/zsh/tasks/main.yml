@@ -1,9 +1,3 @@
-- name: Install zsh package
-  apt:
-    name: zsh
-    state: latest
-  become: yes
-
 - name: Set default shell to zsh
   command: chsh -s /bin/zsh {{ ansible_env.USER}}
   become: yes

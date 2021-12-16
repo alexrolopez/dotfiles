@@ -1,5 +1,7 @@
 - name: Add ruby asdf plugin
-  command: asdf plugin-add ruby
+  shell: source {{ dotfiles_user_home }}/.asdf/asdf.sh && asdf plugin-add ruby
+  args:
+    executable: /bin/bash
   register: ruby_add
   failed_when: ruby_add == 2
 
@@ -11,8 +13,12 @@
     force: yes
 
 - name: Install ruby versions
-  command: asdf install ruby {{item}}
+  shell: source {{ dotfiles_user_home }}/.asdf/asdf.sh && asdf install ruby {{item}}
+  args:
+    executable: /bin/bash
   loop: "{{versions}}"
 
 - name: Set global version for ruby to {{versions[0]}}
-  command: asdf global ruby {{versions[0]}}
+  shell: source {{ dotfiles_user_home }}/.asdf/asdf.sh && asdf global ruby {{versions[0]}}
+  args:
+    executable: /bin/bash

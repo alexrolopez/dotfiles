@@ -1,8 +1,8 @@
 - name: Set up local workstation
   hosts: local
   roles:
-    - git
     - base
+    - git
     - zsh
     - asdf
     - ruby
