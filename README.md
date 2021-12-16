@@ -11,6 +11,7 @@ I recommend understanding everything first, and then bulding a setup for your sp
 - zsh: Sets zsh as default shell, installs oh-my-zsh with powerlevel10k theme.
 - asdf: Installs asdf version manager.
 - ruby: Installs various Ruby versions and default gems (using asdf).
+- node: Installs Node versions and default npm packages (using asdf).
 
 ## Installation
 

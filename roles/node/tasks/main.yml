@@ -1,0 +1,24 @@
+- name: Add node asdf plugin
+  shell: source {{ dotfiles_user_home }}/.asdf/asdf.sh && asdf plugin-add nodejs 
+  args:
+    executable: /bin/bash
+  register: node_add
+  failed_when: node_add == 2
+
+- name: Link .default-npm-packages
+  file:
+    src: "{{ dotfiles_home }}/roles/node/files/default-npm-packages"
+    dest: "{{ dotfiles_user_home }}/.default-npm-packages"
+    state: link
+    force: yes
+
+- name: Install node versions
+  shell: source {{ dotfiles_user_home }}/.asdf/asdf.sh && asdf install nodejs {{item}}
+  args:
+    executable: /bin/bash
+  loop: "{{versions}}"
+
+- name: Set global version for node to {{versions[0]}}
+  shell: source {{ dotfiles_user_home }}/.asdf/asdf.sh && asdf global nodejs {{versions[0]}}
+  args:
+    executable: /bin/bash
