@@ -2,20 +2,26 @@
   apt:
     name:
       - ansible
+      - bat
       - build-essential
       - curl
       - dirmngr
       - docker-compose
+      - fd-find
       - fzf
       - gawk
       - git
       - gpg
       - htop
       - jq
+      - libpq-dev
+      - libssl-dev
       - make
       - memcached
+      - neovim
       - postgresql
       - redis
+      - ripgrep
       - shellcheck
       - tldr
       - tree 
