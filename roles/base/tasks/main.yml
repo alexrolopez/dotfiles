@@ -25,6 +25,7 @@
       - redis
       - shellcheck
       - tldr
+      - tmux
       - tree 
       - vim
       - wget
