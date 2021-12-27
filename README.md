@@ -26,7 +26,7 @@ $ ~/.dotfiles/install.sh
 ```
 
 ## TODO
-- Compatibility with other systems (MacOS, yum, pacman)
+- Compatibility with other package systems (brew, dnf, pacman)
 
 ## Inspiration
 - https://medium.com/espinola-designs/manage-your-dotfiles-with-ansible-6dbedd5532bb (https://github.com/kespinola/dotfiles)
