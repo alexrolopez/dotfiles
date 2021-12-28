@@ -16,6 +16,8 @@ I recommend understanding everything first, and then bulding a setup for your sp
 ## Installation
 
 ```bash
+# Create and add ssh key to github (https://github.com/settings/ssh/new), then:
+
 $ git clone git@github.com:alexrolopez/dotfiles.git ~/.dotfiles
 
 # 1st time, 0 requirements setup:
