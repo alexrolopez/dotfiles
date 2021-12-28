@@ -14,10 +14,9 @@ I recommend understanding everything first, and then bulding a setup for your sp
 - node: Installs Node versions and default npm packages (using asdf).
 
 ## Installation
+Create and add ssh key to github (https://github.com/settings/ssh/new), then:
 
 ```bash
-# Create and add ssh key to github (https://github.com/settings/ssh/new), then:
-
 $ git clone git@github.com:alexrolopez/dotfiles.git ~/.dotfiles
 
 # 1st time, 0 requirements setup:
