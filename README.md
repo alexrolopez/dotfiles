@@ -16,7 +16,7 @@ I recommend understanding everything first, and then bulding a setup for your sp
 ## Installation
 
 ```bash
-$ git clone https://github.com/alexrolopez/dotfiles.git ~/.dotfiles
+$ git clone git@github.com:alexrolopez/dotfiles.git ~/.dotfiles
 
 # 1st time, 0 requirements setup:
 $ GIT_USER_NAME="My Name" GIT_USER_EMAIL="my_email@example.com" ~/.dotfiles/install.sh
