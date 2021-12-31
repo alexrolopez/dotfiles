@@ -1,0 +1,9 @@
+- name: Install MesloLGS NF font
+  get_url:
+    url: "{{item}}"
+    dest: /usr/share/fonts/truetype/meslo_lgs_nf
+    mode: 0644
+  loop: "{{meslo_lgs_nf_urls}}"
+  become: yes
+
+# https://github.com/tonsky/FiraCode/releases/download/6.2/Fira_Code_v6.2.zip
