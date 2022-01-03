@@ -6,7 +6,7 @@ This setup is tailored for my specific needs, **USE AT YOUR OWN RISK**.
 I recommend understanding everything first, and then bulding a setup for your specific needs, over just forking this repo.
 
 ## Included roles
-- base: Installs base packages (apt packages only at the moment). Also installs Neslo Nerd Font, and creates a psql role for the current user.
+- base: Installs base packages (apt packages only at the moment). Also installs Neslo Nerd Font, and creates a postgres superuser role for the current user.
 - git: Sets up a minimal global gitconfig and gitignore. **WARNING**: this will override existing global gitconfig.
 - zsh: Sets zsh as default shell, installs oh-my-zsh with powerlevel10k theme. Sets up fzf with fd, and conditional bat/tree/file previews.
 - asdf: Installs asdf version manager.
@@ -27,7 +27,7 @@ $ ~/.dotfiles/install.sh
 ```
 
 Fira Code and Neslo Nerd fonts are installed.
-It is recommended to setup Neslo Nerd Font as terminal font, as powerlevel10k is already configured for that to be able to correctly display all info.
+It is recommended to set terminal font to Neslo Nerd Font, as powerlevel10k is already configured for that to be able to correctly display all info.
 
 ## TODO
 - Compatibility with other package systems (brew, dnf, pacman)
