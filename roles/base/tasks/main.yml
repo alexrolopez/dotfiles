@@ -44,3 +44,15 @@
     role_attr_flags: SUPERUSER
   become: yes
   become_user: postgres
+
+- name: Install Meslo Nerd font
+  get_url:
+    url: "{{item}}"
+    dest: /usr/share/fonts/truetype
+    mode: 0644
+  loop: "{{meslo_nerd_font_urls}}"
+  become: yes
+
+- name: Rebuild font cache
+  command: fc-cache -f 
+  become: yes
