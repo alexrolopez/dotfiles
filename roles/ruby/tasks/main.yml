@@ -5,6 +5,13 @@
   register: ruby_add
   failed_when: ruby_add == 2
 
+- name: Update ruby asdf plugin
+  shell: source {{ dotfiles_user_home }}/.asdf/asdf.sh && asdf plugin update ruby
+  args:
+    executable: /bin/bash
+  register: ruby_update
+  failed_when: ruby_update == 2
+
 - name: Link .default-gems
   file:
     src: "{{ dotfiles_home }}/roles/ruby/files/default-gems"
