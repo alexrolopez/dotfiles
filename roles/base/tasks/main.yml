@@ -29,6 +29,7 @@
       - shellcheck
       - tldr
       - tmux
+      - traceroute
       - tree 
       - vim
       - wget
