@@ -34,6 +34,7 @@
       - memcached
       - neovim
       - postgresql
+      - postgresql-client
       - python-is-python3
       - python3-psycopg2
       - redis
