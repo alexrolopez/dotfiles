@@ -24,6 +24,7 @@
       - fzf
       - gawk
       - git
+      - golang-go
       - gpg
       - htop
       - jq
