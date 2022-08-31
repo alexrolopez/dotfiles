@@ -60,6 +60,13 @@
   become: yes
   become_user: postgres
 
+- name: Install aws-vault
+  get_url:
+    url: https://github.com/99designs/aws-vault/releases/latest/download/aws-vault-linux-amd64
+    dest: /usr/local/bin/aws-vault
+    mode: 0755
+  become: yes
+
 - name: Install Meslo Nerd font
   get_url:
     url: "{{item}}"
