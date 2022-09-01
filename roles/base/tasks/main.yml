@@ -17,6 +17,7 @@
       - bat
       - build-essential
       - curl
+      - direnv
       - dirmngr
       - docker-compose
       - fd-find
