@@ -76,6 +76,13 @@
     mode: 0755
   become: yes
 
+- name: Add current user to groups
+  user:
+    name: "{{ansible_env.USER}}"
+    groups: sudo,docker
+    append: yes
+  become: yes
+
 - name: Install Meslo Nerd font
   get_url:
     url: "{{item}}"
