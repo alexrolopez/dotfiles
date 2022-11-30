@@ -100,9 +100,13 @@ source $HOME/.dotfiles/roles/zsh/aliases.zsh
 source $HOME/.dotfiles/roles/zsh/env.zsh
 source $HOME/.dotfiles/roles/zsh/fzf.zsh
 
+# Source non-versioned stuff
+[ -f ~/.zshrc-local ] && source ~/.zshrc-local
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # Setup direnv
 eval "$(direnv hook zsh)"
