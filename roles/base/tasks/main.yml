@@ -36,6 +36,7 @@
       - make
       - memcached
       - neovim
+      - pgcli
       - postgresql
       - postgresql-client
       - pre-commit
