@@ -33,6 +33,7 @@
       - libpq-dev
       - libreadline-dev
       - libssl-dev
+      - libyaml-dev
       - make
       - memcached
       - neovim
