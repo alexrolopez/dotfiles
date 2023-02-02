@@ -1,0 +1,24 @@
+- name: Add golang asdf plugin
+  shell: source {{ dotfiles_user_home }}/.asdf/asdf.sh && asdf plugin-add golang
+  args:
+    executable: /bin/bash
+  register: golang_add
+  failed_when: golang_add == 2
+
+- name: Update golang asdf plugin
+  shell: source {{ dotfiles_user_home }}/.asdf/asdf.sh && asdf plugin update golang
+  args:
+    executable: /bin/bash
+  register: golang_update
+  failed_when: golang_update == 2
+
+- name: Install golang versions
+  shell: source {{ dotfiles_user_home }}/.asdf/asdf.sh && asdf install golang {{item}}
+  args:
+    executable: /bin/bash
+  loop: "{{versions}}"
+
+- name: Set global version for golang to {{versions[0]}}
+  shell: source {{ dotfiles_user_home }}/.asdf/asdf.sh && asdf global golang {{versions[0]}}
+  args:
+    executable: /bin/bash

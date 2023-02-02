@@ -17,6 +17,7 @@
       - awscli
       - bat
       - build-essential
+      - coreutils
       - curl
       - direnv
       - dirmngr
