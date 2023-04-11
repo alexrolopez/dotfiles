@@ -13,6 +13,7 @@
 - name: Install apt packages
   apt:
     name:
+      - age
       - ansible
       - awscli
       - bat
