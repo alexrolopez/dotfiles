@@ -23,6 +23,7 @@
       - direnv
       - dirmngr
       - docker-compose
+      - exa
       - fd-find
       - fonts-firacode
       - fzf
