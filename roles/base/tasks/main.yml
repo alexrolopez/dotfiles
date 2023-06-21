@@ -10,6 +10,74 @@
     state: present
   become: yes
 
+
+- name: Add apt redis key
+  apt_key:
+    url: https://packages.redis.io/gpg
+    state: present
+  become: yes
+
+
+- name: Add apt redis repository
+  ansible.builtin.apt_repository:
+    repo: "deb https://packages.redis.io/deb {{ ansible_distribution_release }} main"
+    state: present
+  become: yes
+
+- name: Install apt packages
+  apt:
+    name:
+      - age
+      - ansible
+      - bat
+      - build-essential
+      - coreutils
+      - curl
+      - direnv
+      - dirmngr
+      - docker-compose
+      - exa
+      - fd-find
+      - fonts-firacode
+      - fzf
+      - gawk
+      - git
+      - golang-go
+      - gpg
+      - htop
+      - jq
+      - libpq-dev
+      - libreadline-dev
+      - libssl-dev
+      - libyaml-dev
+      - make
+      - memcached
+      - neovim
+      - pgcli
+      - postgresql
+      - postgresql-client
+      - pre-commit
+      - python-is-python3
+      - python3-psycopg2
+      - redis
+      - ripgrep
+      - shellcheck
+      - terraform
+      - tldr
+      - tmux
+      - traceroute
+      - tree 
+      - vim
+      - wget
+      - xclip
+      - zsh
+
+- name: Add apt redis repository
+  ansible.builtin.apt_repository:
+    repo: "deb https://packages.redis.io/deb {{ ansible_distribution_release }} main"
+    state: present
+  become: yes
+
 - name: Install apt packages
   apt:
     name:
