@@ -31,6 +31,7 @@ if ! [ -x "$(command -v ansible)" ]; then
   sudo apt update && sudo apt install -y ansible
 fi
 
+ansible-galaxy collection install community.postgresql
 ansible-playbook -i ~/.dotfiles/hosts ~/.dotfiles/dotfiles.yml --ask-become-pass
 
 echo "Development environment ready! Log out and log back in for new zsh shell to take effect."
