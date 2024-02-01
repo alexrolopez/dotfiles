@@ -108,13 +108,6 @@
     deb: https://github.com/go-task/task/releases/latest/download/task_linux_amd64.deb
   become: yes
 
-- name: Configure postgresql role for current user
-  community.postgresql.postgresql_user:
-    user: "{{ansible_env.USER}}"
-    role_attr_flags: SUPERUSER
-  become: yes
-  become_user: postgres
-
 - name: Install aws-vault
   get_url:
     url: https://github.com/99designs/aws-vault/releases/latest/download/aws-vault-linux-amd64
