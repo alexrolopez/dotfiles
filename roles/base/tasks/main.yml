@@ -133,6 +133,7 @@
       - htop
       - jq
       - libffi
+      - libpq
       - libyaml
       - make
       - memcached
