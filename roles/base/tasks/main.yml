@@ -140,7 +140,7 @@
       - neovim
       - openssl@3
       - pgcli
-      - postgresql
+      - postgresql@16
       - pre-commit
       - python
       - qemu
