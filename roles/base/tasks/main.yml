@@ -1,38 +1,43 @@
 - name: Add apt hashicorp key
-  apt_key:
+  ansible.builtin.apt_key:
     url: https://apt.releases.hashicorp.com/gpg
     state: present
+  when: ansible_os_family == "Debian"
   become: yes
 
 - name: Add apt hashicorp repository
   ansible.builtin.apt_repository:
     repo: "deb https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
     state: present
+  when: ansible_os_family == "Debian"
   become: yes
 
 - name: Add apt redis key
-  apt_key:
+  ansible.builtin.apt_key:
     url: https://packages.redis.io/gpg
     state: present
+  when: ansible_os_family == "Debian"
   become: yes
-
 
 - name: Add apt redis repository
   ansible.builtin.apt_repository:
     repo: "deb https://packages.redis.io/deb {{ ansible_distribution_release }} main"
     state: present
+  when: ansible_os_family == "Debian"
   become: yes
 
 - name: Add apt docker key
-  apt_key:
+  ansible.builtin.apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
     state: present
+  when: ansible_os_family == "Debian"
   become: yes
 
 - name: Add apt docker repository
   ansible.builtin.apt_repository:
     repo: "deb https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
     state: present
+  when: ansible_os_family == "Debian"
   become: yes
 
 - name: Install apt packages
@@ -53,7 +58,6 @@
       - docker-ce-cli
       - docker-buildx-plugin
       - docker-compose-plugin
-      - exa
       - fd-find
       - fonts-firacode
       - fzf
@@ -97,35 +101,125 @@
       - vim
       - wget
       - xclip
-      - zlib1g-dev  
+      - zlib1g-dev
       - zsh
     state: latest
     update_cache: yes
+  when: ansible_os_family == "Debian"
   become: yes
 
-- name: Install task
+- name: Install brew packages on macOS
+  homebrew:
+    name:
+      - age
+      - ansible
+      - autoconf
+      - aws-vault
+      - bat
+      - colima
+      - coreutils
+      - direnv
+      - docker
+      - docker-buildx
+      - docker-compose
+      - fd
+      - fzf
+      - gawk
+      - gmp
+      - gnupg
+      - go
+      - go-task
+      - gpg
+      - htop
+      - jq
+      - libffi
+      - libyaml
+      - make
+      - memcached
+      - ncurses
+      - neovim
+      - openssl@3
+      - pgcli
+      - postgresql
+      - pre-commit
+      - python
+      - qemu
+      - readline
+      - redis
+      - ripgrep
+      - rust
+      - shellcheck
+      - sops
+      - terraform
+      - tldr
+      - tmux
+      - tree
+      - vim
+      - wget
+    state: latest
+    update_homebrew: true
+  when: ansible_os_family == "Darwin"
+
+- name: Start brew services
+  community.general.homebrew_services:
+    name: "{{item}}"
+    state: present
+  loop:
+    - colima
+    - memcached
+    - postgresql
+    - redis
+  when: ansible_os_family == "Darwin"
+
+- name: Create Docker CLI plugins directory if not present
+  file:
+    path: "{{ ansible_env.HOME }}/.docker/cli-plugins"
+    state: directory
+    mode: '0755'
+  when: ansible_os_family == "Darwin"
+
+- name: Symlink Docker Buildx plugin
+  file:
+    src: "{{ lookup('pipe', 'brew --prefix') }}/opt/docker-buildx/bin/docker-buildx"
+    dest: "{{ ansible_env.HOME }}/.docker/cli-plugins/docker-buildx"
+    state: link
+    force: yes
+  when: ansible_os_family == "Darwin"
+
+- name: Symlink Docker Compose plugin
+  file:
+    src: "{{ lookup('pipe', 'brew --prefix') }}/opt/docker-compose/bin/docker-compose"
+    dest: "{{ ansible_env.HOME }}/.docker/cli-plugins/docker-compose"
+    state: link
+    force: yes
+  when: ansible_os_family == "Darwin"
+
+- name: Install task on Debian
   apt:
     deb: https://github.com/go-task/task/releases/latest/download/task_linux_amd64.deb
+  when: ansible_os_family == "Debian"
   become: yes
 
-- name: Install aws-vault
+- name: Install aws-vault on Debian
   get_url:
     url: https://github.com/99designs/aws-vault/releases/latest/download/aws-vault-linux-amd64
     dest: /usr/local/bin/aws-vault
     mode: 0755
+  when: ansible_os_family == "Debian"
   become: yes
 
-- name: Add current user to groups
+- name: Add current user to groups on Debian
   user:
     name: "{{ansible_env.USER}}"
     groups: sudo,docker
     append: yes
+  when: ansible_os_family == "Debian"
   become: yes
 
 - name: Install Meslo Nerd font
   get_url:
     url: "{{item}}"
-    dest: /usr/share/fonts/truetype
+    dest: "{{ '/Library/Fonts' if ansible_os_family == 'Darwin' else '/usr/share/fonts/truetype' }}"
     mode: 0644
   loop: "{{meslo_nerd_font_urls}}"
   become: yes
@@ -133,3 +227,4 @@
 - name: Rebuild font cache
   command: fc-cache -f 
   become: yes
+  when: ansible_os_family == "Debian"
