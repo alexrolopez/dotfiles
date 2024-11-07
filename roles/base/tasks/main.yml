@@ -154,21 +154,15 @@
       - tldr
       - tmux
       - tree
-      - vim
       - wget
     state: latest
     update_homebrew: true
   when: ansible_os_family == "Darwin"
 
-- name: Start brew services
+- name: Start colima as brew service
   community.general.homebrew_services:
-    name: "{{item}}"
+    name: colima
     state: present
-  loop:
-    - colima
-    - memcached
-    - postgresql
-    - redis
   when: ansible_os_family == "Darwin"
 
 - name: Create Docker CLI plugins directory if not present
