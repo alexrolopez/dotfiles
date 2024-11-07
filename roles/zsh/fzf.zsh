@@ -1,5 +1,5 @@
-source /usr/share/doc/fzf/examples/key-bindings.zsh
-source /usr/share/doc/fzf/examples/completion.zsh
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
 
 export FZF_DEFAULT_COMMAND="fdfind --hidden --follow --exclude .git"
 export FZF_DEFAULT_OPTS="--bind='ctrl-b:preview-page-up' --bind='ctrl-f:preview-page-down'"
