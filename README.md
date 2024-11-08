@@ -44,11 +44,13 @@ GIT_USER_NAME="My Name" GIT_USER_EMAIL="my_email@example.com" ~/.dotfiles/instal
 ~/.dotfiles/install.sh
 ```
 
+## Post-installation
+You might need to restart your terminal to see the changes.
+
 [Fira Code] and [Neslo Nerd Font] are installed.
 It is recommended to set terminal font to Neslo Nerd Font, as powerlevel10k is already configured for that to be able to correctly display all info.
 
-## TODO
-- Compatibility with other package systems (brew, dnf, pacman)
+In Linux, you might need to alias `bat` and `fd` to `batcat` and `fdfind`, respectively.
 
 ## Inspiration
 - https://medium.com/espinola-designs/manage-your-dotfiles-with-ansible-6dbedd5532bb (https://github.com/kespinola/dotfiles)
