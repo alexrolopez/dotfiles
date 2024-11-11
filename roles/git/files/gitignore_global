@@ -33,4 +33,4 @@ _sandbox
 
 ## Intellij IDEA
 .idea
-.iml
+*.iml
