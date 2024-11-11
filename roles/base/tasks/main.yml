@@ -114,6 +114,7 @@
       - age
       - ansible
       - autoconf
+      - awscli
       - aws-vault
       - bat
       - colima
