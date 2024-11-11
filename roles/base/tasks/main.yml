@@ -150,6 +150,7 @@
       - redis
       - ripgrep
       - rust
+      - session-manager-plugin
       - shellcheck
       - sops
       - terraform
