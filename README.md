@@ -8,10 +8,11 @@ I recommend understanding everything first, and then bulding a setup for your sp
 ## Included roles
 - base: Installs base packages (brew/apt). Also installs [Neslo Nerd Font].
 - git: Sets up a minimal global gitconfig and gitignore. **WARNING**: this will override existing global gitconfig.
-- zsh: Sets [zsh] as default shell, installs [oh-my-zsh] with [powerlevel10k] theme. Sets up [fzf] with [fd], and conditional [bat]/tree/file previews.
+- zsh: Sets [zsh] as default shell, installs [oh-my-zsh] with [powerlevel10k] prompt/theme. Sets up [fzf] with [fd], and conditional [bat]/tree/file previews.
 - asdf: Installs [asdf] version manager.
 - ruby: Installs various Ruby versions and default gems (using asdf).
 - node: Installs Node versions and default npm packages (using asdf).
+- golang: Installs Go (using asdf).
 
 ## Pre-requisites
 
