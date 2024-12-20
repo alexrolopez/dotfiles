@@ -143,6 +143,7 @@
       - openssl@3
       - pgcli
       - postgresql@16
+      - pnpm
       - pre-commit
       - python
       - qemu
