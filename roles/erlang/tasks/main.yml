@@ -1,0 +1,58 @@
+- name: Add erlang asdf plugin
+  shell: source {{ dotfiles_user_home }}/.asdf/asdf.sh && asdf plugin-add erlang
+  args:
+    executable: /bin/bash
+  register: erlang_add
+  failed_when: erlang_add == 2
+
+- name: Update erlang asdf plugin
+  shell: source {{ dotfiles_user_home }}/.asdf/asdf.sh && asdf plugin update erlang
+  args:
+    executable: /bin/bash
+  register: erlang_update
+  failed_when: erlang_update == 2
+
+- name: Install erlang dependencies
+  package:
+    name: "{{ item }}"
+    state: present
+  become: true
+  with_items:
+    - autoconf
+    - build-essential
+    - libncurses5-dev
+    - libwxgtk3.0-gtk3-dev
+    - libgl1-mesa-dev
+    - libglu1-mesa-dev
+    - libpng-dev
+    - libssh-dev
+    - unixodbc-dev
+    - xsltproc
+    - fop
+    - libxml2-utils
+    - libncurses-dev
+    - openjdk-11-jdk
+  when: ansible_os_family == "Debian"
+
+- name: Install erlang dependencies (macOS)
+  homebrew:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - autoconf
+    - fop
+    - libxslt
+    - openssl
+    - wxwidgets
+  when: ansible_os_family == "Darwin"
+
+- name: Install erlang versions
+  shell: source {{ dotfiles_user_home }}/.asdf/asdf.sh && asdf install erlang {{item}}
+  args:
+    executable: /bin/bash
+  loop: "{{versions}}"
+
+- name: Set global version for erlang to {{versions[0]}}
+  shell: source {{ dotfiles_user_home }}/.asdf/asdf.sh && asdf global erlang {{versions[0]}}
+  args:
+    executable: /bin/bash 

@@ -1,0 +1,31 @@
+- name: Add elixir asdf plugin
+  shell: source {{ dotfiles_user_home }}/.asdf/asdf.sh && asdf plugin-add elixir
+  args:
+    executable: /bin/bash
+  register: elixir_add
+  failed_when: elixir_add == 2
+
+- name: Update elixir asdf plugin
+  shell: source {{ dotfiles_user_home }}/.asdf/asdf.sh && asdf plugin update elixir
+  args:
+    executable: /bin/bash
+  register: elixir_update
+  failed_when: elixir_update == 2
+
+- name: Link .default-mix-commands
+  file:
+    src: "{{ dotfiles_home }}/roles/elixir/files/default-mix-commands"
+    dest: "{{ dotfiles_user_home }}/.default-mix-commands"
+    state: link
+    force: yes
+
+- name: Install elixir versions
+  shell: source {{ dotfiles_user_home }}/.asdf/asdf.sh && asdf install elixir {{item}}
+  args:
+    executable: /bin/bash
+  loop: "{{versions}}"
+
+- name: Set global version for elixir to {{versions[0]}}
+  shell: source {{ dotfiles_user_home }}/.asdf/asdf.sh && asdf global elixir {{versions[0]}}
+  args:
+    executable: /bin/bash

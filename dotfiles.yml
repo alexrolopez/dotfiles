@@ -5,6 +5,8 @@
     - git
     - zsh
     - asdf
+    - erlang
+    - elixir
     - ruby
     - node
     - golang
