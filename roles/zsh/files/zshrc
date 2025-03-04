@@ -110,3 +110,4 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:/opt/ho
 
 # Setup direnv
 eval "$(direnv hook zsh)"
+
