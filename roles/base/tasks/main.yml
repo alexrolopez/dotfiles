@@ -130,7 +130,6 @@
       - gnupg
       - go
       - go-task
-      - gpg
       - htop
       - jq
       - libffi
@@ -139,6 +138,7 @@
       - libyaml
       - make
       - memcached
+      - mise
       - ncurses
       - neovim
       - openssl@3
@@ -164,11 +164,15 @@
     update_homebrew: true
   when: ansible_os_family == "Darwin"
 
-- name: Start colima as brew service
-  community.general.homebrew_services:
-    name: colima
-    state: present
+- name: Check if colima is already running
+  shell: brew services list | grep colima | grep started
+  register: colima_status
+  failed_when: false
   when: ansible_os_family == "Darwin"
+
+- name: Start colima if not already running
+  shell: brew services start colima
+  when: ansible_os_family == "Darwin" and colima_status.rc != 0
 
 - name: Create Docker CLI plugins directory if not present
   file:
@@ -203,6 +207,14 @@
   get_url:
     url: https://github.com/99designs/aws-vault/releases/latest/download/aws-vault-linux-amd64
     dest: /usr/local/bin/aws-vault
+    mode: 0755
+  when: ansible_os_family == "Debian"
+  become: yes
+
+- name: Install mise on Debian
+  get_url:
+    url: https://github.com/jdx/mise/releases/latest/download/mise-linux-x64
+    dest: /usr/local/bin/mise
     mode: 0755
   when: ansible_os_family == "Debian"
   become: yes

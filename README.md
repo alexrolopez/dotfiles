@@ -6,13 +6,14 @@ This setup is tailored for my specific needs, **USE AT YOUR OWN RISK**.
 I recommend understanding everything first, and then bulding a setup for your specific needs, over just forking this repo.
 
 ## Included roles
-- base: Installs base packages (brew/apt). Also installs [Neslo Nerd Font].
+- base: Installs base packages (brew/apt). Installs [mise], that will be our tools version manager of choice. Also installs [Neslo Nerd Font].
 - git: Sets up a minimal global gitconfig and gitignore. **WARNING**: this will override existing global gitconfig.
 - zsh: Sets [zsh] as default shell, installs [oh-my-zsh] with [powerlevel10k] prompt/theme. Sets up [fzf] with [fd], and conditional [bat]/tree/file previews.
-- asdf: Installs [asdf] version manager.
-- ruby: Installs various Ruby versions and default gems (using asdf).
-- node: Installs Node versions and default npm packages (using asdf).
-- golang: Installs Go (using asdf).
+- erlang: Installs Erlang (using mise).
+- elixir: Installs Elixir (using mise).
+- ruby: Installs various Ruby versions and default gems (using mise).
+- node: Installs Node versions and default npm packages (using mise).
+- golang: Installs Go (using mise).
 
 ## Pre-requisites
 
@@ -67,4 +68,4 @@ In Linux, you might need to alias `bat` and `fd` to `batcat` and `fdfind`, respe
 [fzf]: https://github.com/junegunn/fzf
 [fd]: https://github.com/sharkdp/fd
 [bat]: https://github.com/sharkdp/bat
-[asdf]: http://asdf-vm.com/
+[mise]: https://mise.jdx.dev/
