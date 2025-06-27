@@ -135,6 +135,7 @@
       - jq
       - libffi
       - libpq
+      - libtool
       - libyaml
       - make
       - memcached
