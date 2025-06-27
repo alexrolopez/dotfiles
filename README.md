@@ -6,7 +6,7 @@ This setup is tailored for my specific needs, **USE AT YOUR OWN RISK**.
 I recommend understanding everything first, and then bulding a setup for your specific needs, over just forking this repo.
 
 ## Included roles
-- base: Installs base packages (brew/apt). Installs [mise], that will be our tools version manager of choice. Also installs [Neslo Nerd Font].
+- base: Installs base packages (brew/apt). Installs [mise], that will be our tools version manager of choice.
 - git: Sets up a minimal global gitconfig and gitignore. **WARNING**: this will override existing global gitconfig.
 - zsh: Sets [zsh] as default shell, installs [oh-my-zsh] with [powerlevel10k] prompt/theme. Sets up [fzf] with [fd], and conditional [bat]/tree/file previews.
 - erlang: Installs Erlang (using mise).
@@ -49,8 +49,7 @@ GIT_USER_NAME="My Name" GIT_USER_EMAIL="my_email@example.com" ~/.dotfiles/instal
 ## Post-installation
 You might need to restart your terminal to see the changes.
 
-[Fira Code] and [Neslo Nerd Font] are installed.
-It is recommended to set terminal font to Neslo Nerd Font, as powerlevel10k is already configured for that to be able to correctly display all info.
+[Fira Code] nerd font is installed, it is recommended to use it as the terminal font, and to use a solarized color theme.
 
 In Linux, you might need to alias `bat` and `fd` to `batcat` and `fdfind`, respectively.
 
@@ -63,7 +62,6 @@ In Linux, you might need to alias `bat` and `fd` to `batcat` and `fdfind`, respe
 [zsh]: https://zsh.sourceforge.io/
 [oh-my-zsh]: https://github.com/ohmyzsh/ohmyzsh
 [powerlevel10k]: https://github.com/romkatv/powerlevel10k
-[Neslo Nerd Font]: https://github.com/romkatv/powerlevel10k/blob/master/font.md
 [Fira Code]: https://github.com/tonsky/FiraCode
 [fzf]: https://github.com/junegunn/fzf
 [fd]: https://github.com/sharkdp/fd

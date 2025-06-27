@@ -92,6 +92,7 @@
       - ripgrep
       - rustc
       - shellcheck
+      - starship
       - terraform
       - tldr
       - tmux
@@ -124,6 +125,7 @@
       - docker-buildx
       - docker-compose
       - fd
+      - font-fira-code-nerd-font
       - fzf
       - gawk
       - gmp
@@ -155,6 +157,7 @@
       - session-manager-plugin
       - shellcheck
       - sops
+      - starship
       - terraform
       - tldr
       - tmux
@@ -226,16 +229,3 @@
     append: yes
   when: ansible_os_family == "Debian"
   become: yes
-
-- name: Install Meslo Nerd font
-  get_url:
-    url: "{{item}}"
-    dest: "{{ '/Library/Fonts' if ansible_os_family == 'Darwin' else '/usr/share/fonts/truetype' }}"
-    mode: 0644
-  loop: "{{meslo_nerd_font_urls}}"
-  become: yes
-
-- name: Rebuild font cache
-  command: fc-cache -f 
-  become: yes
-  when: ansible_os_family == "Debian"
