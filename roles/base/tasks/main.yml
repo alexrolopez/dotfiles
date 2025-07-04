@@ -145,7 +145,7 @@
       - neovim
       - openssl@3
       - pgcli
-      - postgresql@16
+      - postgresql@17
       - pnpm
       - pre-commit
       - python
