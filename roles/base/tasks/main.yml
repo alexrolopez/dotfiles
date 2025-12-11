@@ -121,6 +121,7 @@
       - colima
       - coreutils
       - direnv
+      - dive
       - docker
       - docker-buildx
       - docker-compose
@@ -134,6 +135,7 @@
       - go-task
       - htop
       - jq
+      - lazydocker
       - libffi
       - libpq
       - libtool
