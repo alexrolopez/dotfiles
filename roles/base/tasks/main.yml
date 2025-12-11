@@ -133,6 +133,7 @@
       - gnupg
       - go
       - go-task
+      - hadolint
       - htop
       - jq
       - lazydocker
