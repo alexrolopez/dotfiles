@@ -62,6 +62,7 @@
       - fonts-firacode
       - fzf
       - gawk
+      - gh
       - gnupg
       - git
       - golang-go
@@ -129,6 +130,7 @@
       - font-fira-code-nerd-font
       - fzf
       - gawk
+      - gh
       - gmp
       - gnupg
       - go
