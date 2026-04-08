@@ -19,6 +19,11 @@
     state: link
     force: yes
 
+- name: Ensure .config directory exists
+  file:
+    path: "{{ dotfiles_user_home }}/.config"
+    state: directory
+
 - name: Link .starship.toml
   file:
     src: "{{ dotfiles_home }}/roles/zsh/files/starship.toml"
