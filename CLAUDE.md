@@ -73,6 +73,6 @@ All language versions are managed via mise (defined in each role's `defaults/mai
 
 ## Platform Differences
 
-The playbook uses `ansible_os_family` to handle platform-specific tasks:
-- macOS: Uses Homebrew, installs Colima for containers
-- Linux: Uses apt, adds external repos (HashiCorp, Redis, Docker), sets zsh as default shell
+The playbook uses `ansible_facts['os_family']` to handle platform-specific tasks:
+- macOS: Uses Homebrew, installs Colima (vz backend) for containers
+- Linux: Uses apt, adds external repos (OpenTofu, Redis, Docker), sets zsh as default shell

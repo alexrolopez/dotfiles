@@ -1,6 +1,6 @@
 - name: Set default shell to zsh
-  command: chsh -s /bin/zsh {{ ansible_env.USER}}
-  when: ansible_os_family == "Debian"
+  command: chsh -s /bin/zsh {{ ansible_facts.env.USER}}
+  when: ansible_facts['os_family'] == "Debian"
   become: yes
 
 - name: Check for oh-my-zsh installation

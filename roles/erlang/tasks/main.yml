@@ -18,7 +18,7 @@
     - libxml2-utils
     - libncurses-dev
     - openjdk-11-jdk
-  when: ansible_os_family == "Debian"
+  when: ansible_facts['os_family'] == "Debian"
 
 - name: Install erlang dependencies (macOS)
   homebrew:
@@ -30,7 +30,7 @@
     - libxslt
     - openssl
     - wxwidgets
-  when: ansible_os_family == "Darwin"
+  when: ansible_facts['os_family'] == "Darwin"
 
 - name: Install erlang versions
   shell: mise install erlang@{{item}}
