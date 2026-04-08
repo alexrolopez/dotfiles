@@ -252,6 +252,18 @@
     - "{{ dotfiles_user_home }}/.claude"
     - "{{ dotfiles_user_home }}/.claude/hooks"
 
+- name: Install Claude Code
+  shell: curl -fsSL https://claude.ai/install.sh | bash
+
+- name: Install OpenCode
+  shell: curl -fsSL https://opencode.ai/install | bash
+
+- name: Install Codex
+  npm:
+    name: "@openai/codex"
+    global: true
+    state: latest
+
 - name: Install Claude Code safety hook
   copy:
     src: claude/hooks/deny-rm-rf.jq
