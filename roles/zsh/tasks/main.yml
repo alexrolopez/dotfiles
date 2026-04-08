@@ -24,6 +24,18 @@
     path: "{{ dotfiles_user_home }}/.config"
     state: directory
 
+- name: Ensure .config/ghostty directory exists
+  file:
+    path: "{{ dotfiles_user_home }}/.config/ghostty"
+    state: directory
+
+- name: Link Ghostty config
+  file:
+    src: "{{ dotfiles_home }}/roles/zsh/files/ghostty/config"
+    dest: "{{ dotfiles_user_home }}/.config/ghostty/config"
+    state: link
+    force: yes
+
 - name: Link .starship.toml
   file:
     src: "{{ dotfiles_home }}/roles/zsh/files/starship.toml"

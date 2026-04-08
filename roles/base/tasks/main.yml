@@ -133,6 +133,7 @@
       - fzf
       - gawk
       - gh
+      - ghostty
       - gmp
       - gnupg
       - go

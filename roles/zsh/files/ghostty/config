@@ -1,0 +1,5 @@
+theme = Cutie Pro
+scrollback-limit = 1000000000
+font-size = 15
+macos-titlebar-style = transparent
+macos-titlebar-proxy-icon = hidden
