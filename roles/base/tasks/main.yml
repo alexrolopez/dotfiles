@@ -127,6 +127,7 @@
       - docker
       - docker-buildx
       - docker-compose
+      - eza
       - fd
       - font-fira-code-nerd-font
       - fzf
