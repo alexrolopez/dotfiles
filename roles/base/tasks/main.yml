@@ -121,6 +121,7 @@
       - bat
       - colima
       - coreutils
+      - difftastic
       - direnv
       - dive
       - docker

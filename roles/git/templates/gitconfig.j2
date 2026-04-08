@@ -8,8 +8,15 @@
         defaultBranch = main
 [pull]
         rebase = true
+[push]
+        autoSetupRemote = true
+        followTags = true
 [rebase]
         autoStash = true
+[branch]
+        sort = -committerdate
+[diff]
+        external = difft
 [url "git@github.com:"]
         insteadOf = https://github.com/
 [diff "sopsdiffer"]
