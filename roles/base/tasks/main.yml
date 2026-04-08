@@ -166,6 +166,7 @@
       - opentofu
       - tlrc
       - tmux
+      - trash
       - tree
       - wget
     state: latest
@@ -242,6 +243,25 @@
     mode: 0755
   when: ansible_facts['os_family'] == "Debian"
   become: yes
+
+- name: Ensure Claude Code directories exist
+  file:
+    path: "{{ item }}"
+    state: directory
+  loop:
+    - "{{ dotfiles_user_home }}/.claude"
+    - "{{ dotfiles_user_home }}/.claude/hooks"
+
+- name: Install Claude Code safety hook
+  copy:
+    src: claude/hooks/deny-rm-rf.jq
+    dest: "{{ dotfiles_user_home }}/.claude/hooks/deny-rm-rf.jq"
+    mode: '0755'
+
+- name: Install Claude Code settings
+  copy:
+    src: claude/settings.json
+    dest: "{{ dotfiles_user_home }}/.claude/settings.json"
 
 - name: Add current user to groups on Debian
   user:
