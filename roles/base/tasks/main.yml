@@ -1,13 +1,13 @@
-- name: Add apt hashicorp key
+- name: Add OpenTofu GPG key
   ansible.builtin.apt_key:
-    url: https://apt.releases.hashicorp.com/gpg
+    url: https://get.opentofu.org/opentofu.gpg
     state: present
   when: ansible_os_family == "Debian"
   become: yes
 
-- name: Add apt hashicorp repository
+- name: Add OpenTofu repository
   ansible.builtin.apt_repository:
-    repo: "deb https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
+    repo: "deb [arch=amd64] https://packages.opentofu.org/opentofu/tofu/any/ any main"
     state: present
   when: ansible_os_family == "Debian"
   become: yes
@@ -94,8 +94,8 @@
       - rustc
       - shellcheck
       - starship
-      - terraform
-      - tldr
+      - tofu
+      - tlrc
       - tmux
       - traceroute
       - tree
@@ -159,12 +159,11 @@
       - redis
       - ripgrep
       - rust
-      - session-manager-plugin
       - shellcheck
       - sops
       - starship
-      - terraform
-      - tldr
+      - opentofu
+      - tlrc
       - tmux
       - tree
       - wget
