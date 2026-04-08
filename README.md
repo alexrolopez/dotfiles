@@ -57,6 +57,7 @@ In Linux, you might need to alias `bat` and `fd` to `batcat` and `fdfind`, respe
 - https://medium.com/espinola-designs/manage-your-dotfiles-with-ansible-6dbedd5532bb (https://github.com/kespinola/dotfiles)
 - https://snow-dev.com/posts/next-level-dotfiles-with-ansible.html 
 - https://github.com/alexdesousa/dotfiles
+- https://github.com/nateberkopec/dotfiles
 
 [ansible]: https://docs.ansible.com/ansible/latest/index.html
 [zsh]: https://zsh.sourceforge.io/
