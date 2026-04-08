@@ -154,7 +154,6 @@
       - pnpm
       - pre-commit
       - python
-      - qemu
       - readline
       - redis
       - ripgrep
@@ -171,15 +170,31 @@
     update_homebrew: true
   when: ansible_os_family == "Darwin"
 
-- name: Check if colima is already running
-  shell: brew services list | grep colima | grep started
-  register: colima_status
+- name: Check if colima default instance exists
+  shell: colima list -j | grep -q '"name":"default"'
+  register: colima_instance
   failed_when: false
+  changed_when: false
   when: ansible_os_family == "Darwin"
 
+- name: Create colima instance with vz backend
+  shell: colima start --vm-type vz --vz-rosetta --mount-type virtiofs
+  when: ansible_os_family == "Darwin" and colima_instance.rc != 0
+
+- name: Check if colima is already running
+  shell: colima list -j | grep -q '"status":"Running"'
+  register: colima_status
+  failed_when: false
+  changed_when: false
+  when: ansible_os_family == "Darwin" and colima_instance.rc == 0
+
 - name: Start colima if not already running
+  shell: colima start
+  when: ansible_os_family == "Darwin" and colima_instance.rc == 0 and colima_status.rc != 0
+
+- name: Enable colima as a service to survive reboots
   shell: brew services start colima
-  when: ansible_os_family == "Darwin" and colima_status.rc != 0
+  when: ansible_os_family == "Darwin"
 
 - name: Create Docker CLI plugins directory if not present
   file:
