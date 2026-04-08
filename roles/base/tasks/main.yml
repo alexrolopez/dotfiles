@@ -258,11 +258,6 @@
     dest: "{{ dotfiles_user_home }}/.claude/hooks/deny-rm-rf.jq"
     mode: '0755'
 
-- name: Install Claude Code settings
-  copy:
-    src: claude/settings.json
-    dest: "{{ dotfiles_user_home }}/.claude/settings.json"
-
 - name: Add current user to groups on Debian
   user:
     name: "{{ansible_facts.env.USER}}"
