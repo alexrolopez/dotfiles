@@ -8,7 +8,7 @@ I recommend understanding everything first, and then bulding a setup for your sp
 ## Included roles
 - base: Installs base packages (brew/apt). Installs [mise], that will be our tools version manager of choice.
 - git: Sets up a minimal global gitconfig and gitignore. **WARNING**: this will override existing global gitconfig.
-- zsh: Sets [zsh] as default shell, installs [oh-my-zsh] with [powerlevel10k] prompt/theme. Sets up [fzf] with [fd], and conditional [bat]/tree/file previews.
+- zsh: Sets [zsh] as default shell, installs [oh-my-zsh] with [starship] prompt. Sets up [fzf] with [fd], and conditional [bat]/tree/file previews.
 - erlang: Installs Erlang (using mise).
 - elixir: Installs Elixir (using mise).
 - ruby: Installs various Ruby versions and default gems (using mise).
@@ -61,7 +61,7 @@ In Linux, you might need to alias `bat` and `fd` to `batcat` and `fdfind`, respe
 [ansible]: https://docs.ansible.com/ansible/latest/index.html
 [zsh]: https://zsh.sourceforge.io/
 [oh-my-zsh]: https://github.com/ohmyzsh/ohmyzsh
-[powerlevel10k]: https://github.com/romkatv/powerlevel10k
+[starship]: https://starship.rs/
 [Fira Code]: https://github.com/tonsky/FiraCode
 [fzf]: https://github.com/junegunn/fzf
 [fd]: https://github.com/sharkdp/fd
