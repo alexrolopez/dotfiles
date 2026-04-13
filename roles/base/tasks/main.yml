@@ -161,6 +161,8 @@
       - redis
       - ripgrep
       - rust
+      - semgrep
+      - session-manager-plugin
       - shellcheck
       - sops
       - starship
