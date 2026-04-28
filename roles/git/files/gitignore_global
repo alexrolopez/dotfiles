@@ -41,3 +41,16 @@ node_modules/
 
 ## Git worktrees
 .worktrees
+
+## oh-my-claudecode runtime state (keep .omc/skills/ trackable)
+**/.omc/*
+!**/.omc/skills/
+!**/.omc/skills/**
+
+## Claude Code — machine-local state only
+## (settings.json, skills/, commands/, hooks/, agents/ stay committed for team sharing)
+.claude/settings.local.json
+.claude/**/*.lock
+.claude/.cache/
+.claude/.state/
+.claude/.tmp/
