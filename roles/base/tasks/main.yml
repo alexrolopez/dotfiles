@@ -140,6 +140,7 @@
       - go-task
       - hadolint
       - htop
+      - jj
       - jq
       - lazydocker
       - libffi
