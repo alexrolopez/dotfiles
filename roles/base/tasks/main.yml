@@ -113,6 +113,7 @@
 - name: Install brew packages on macOS
   homebrew:
     name:
+      - actionlint
       - age
       - ansible
       - autoconf
