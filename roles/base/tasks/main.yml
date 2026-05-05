@@ -1,42 +1,138 @@
+- name: Detect WSL
+  set_fact:
+    dotfiles_is_wsl: "{{ (ansible_facts['kernel'] | lower) is search('microsoft|wsl') }}"
+  when: ansible_facts['os_family'] == "Debian"
+
+- name: Set Debian package architecture
+  set_fact:
+    dotfiles_debian_arch: "{{ 'amd64' if ansible_facts['architecture'] == 'x86_64' else 'arm64' if ansible_facts['architecture'] in ['aarch64', 'arm64'] else ansible_facts['architecture'] }}"
+  when: ansible_facts['os_family'] == "Debian"
+
+- name: Set upstream Debian package distribution
+  set_fact:
+    dotfiles_debian_upstream_distribution: "{{ 'debian' if ansible_facts['distribution'] == 'Debian' else 'ubuntu' }}"
+  when: ansible_facts['os_family'] == "Debian"
+
+- name: Ensure apt keyring directory exists
+  file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: '0755'
+  when: ansible_facts['os_family'] == "Debian"
+  become: yes
+
 - name: Add OpenTofu GPG key
-  ansible.builtin.apt_key:
+  get_url:
     url: https://get.opentofu.org/opentofu.gpg
-    state: present
+    dest: /etc/apt/keyrings/opentofu.gpg
+    mode: '0644'
+  when: ansible_facts['os_family'] == "Debian"
+  become: yes
+
+- name: Download OpenTofu repository GPG key
+  get_url:
+    url: https://packages.opentofu.org/opentofu/tofu/gpgkey
+    dest: /tmp/opentofu-repo.gpgkey
+    mode: '0644'
+  when: ansible_facts['os_family'] == "Debian"
+
+- name: Dearmor OpenTofu repository GPG key
+  command: gpg --no-tty --batch --yes --dearmor -o /etc/apt/keyrings/opentofu-repo.gpg /tmp/opentofu-repo.gpgkey
+  when: ansible_facts['os_family'] == "Debian"
+  become: yes
+
+- name: Ensure OpenTofu repository GPG key is readable
+  file:
+    path: /etc/apt/keyrings/opentofu-repo.gpg
+    mode: '0644'
   when: ansible_facts['os_family'] == "Debian"
   become: yes
 
 - name: Add OpenTofu repository
   ansible.builtin.apt_repository:
-    repo: "deb [arch=amd64] https://packages.opentofu.org/opentofu/tofu/any/ any main"
+    repo: "deb [arch={{ dotfiles_debian_arch }} signed-by=/etc/apt/keyrings/opentofu.gpg,/etc/apt/keyrings/opentofu-repo.gpg] https://packages.opentofu.org/opentofu/tofu/any/ any main"
     state: present
+    filename: opentofu
   when: ansible_facts['os_family'] == "Debian"
   become: yes
 
-- name: Add apt redis key
-  ansible.builtin.apt_key:
+- name: Add Redis GPG key
+  get_url:
     url: https://packages.redis.io/gpg
-    state: present
+    dest: /etc/apt/keyrings/redis-archive-keyring.asc
+    mode: '0644'
   when: ansible_facts['os_family'] == "Debian"
   become: yes
 
-- name: Add apt redis repository
+- name: Add Redis repository
   ansible.builtin.apt_repository:
-    repo: "deb https://packages.redis.io/deb {{ ansible_facts['distribution_release'] }} main"
+    repo: "deb [signed-by=/etc/apt/keyrings/redis-archive-keyring.asc] https://packages.redis.io/deb {{ ansible_facts['distribution_release'] }} main"
     state: present
+    filename: redis
   when: ansible_facts['os_family'] == "Debian"
   become: yes
 
-- name: Add apt docker key
-  ansible.builtin.apt_key:
-    url: https://download.docker.com/linux/ubuntu/gpg
-    state: present
+- name: Add Docker GPG key
+  get_url:
+    url: "https://download.docker.com/linux/{{ dotfiles_debian_upstream_distribution }}/gpg"
+    dest: /etc/apt/keyrings/docker.asc
+    mode: '0644'
   when: ansible_facts['os_family'] == "Debian"
   become: yes
 
-- name: Add apt docker repository
+- name: Add Docker repository
   ansible.builtin.apt_repository:
-    repo: "deb https://download.docker.com/linux/ubuntu {{ ansible_facts['distribution_release'] }} stable"
+    repo: "deb [arch={{ dotfiles_debian_arch }} signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/{{ dotfiles_debian_upstream_distribution }} {{ ansible_facts['distribution_release'] }} stable"
     state: present
+    filename: docker
+  when: ansible_facts['os_family'] == "Debian"
+  become: yes
+
+- name: Add GitHub CLI GPG key
+  get_url:
+    url: https://cli.github.com/packages/githubcli-archive-keyring.gpg
+    dest: /etc/apt/keyrings/githubcli-archive-keyring.gpg
+    mode: '0644'
+  when: ansible_facts['os_family'] == "Debian"
+  become: yes
+
+- name: Add GitHub CLI repository
+  ansible.builtin.apt_repository:
+    repo: "deb [arch={{ dotfiles_debian_arch }} signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main"
+    state: present
+    filename: github-cli
+  when: ansible_facts['os_family'] == "Debian"
+  become: yes
+
+- name: Add mise GPG key
+  get_url:
+    url: https://mise.jdx.dev/gpg-key.pub
+    dest: /etc/apt/keyrings/mise-archive-keyring.asc
+    mode: '0644'
+  when: ansible_facts['os_family'] == "Debian"
+  become: yes
+
+- name: Add mise repository
+  ansible.builtin.apt_repository:
+    repo: "deb [signed-by=/etc/apt/keyrings/mise-archive-keyring.asc] https://mise.jdx.dev/deb stable main"
+    state: present
+    filename: mise
+  when: ansible_facts['os_family'] == "Debian"
+  become: yes
+
+- name: Add eza GPG key
+  get_url:
+    url: https://raw.githubusercontent.com/eza-community/eza/main/deb.asc
+    dest: /etc/apt/keyrings/gierens.asc
+    mode: '0644'
+  when: ansible_facts['os_family'] == "Debian"
+  become: yes
+
+- name: Add eza repository
+  ansible.builtin.apt_repository:
+    repo: "deb [signed-by=/etc/apt/keyrings/gierens.asc] http://deb.gierens.de stable main"
+    state: present
+    filename: gierens
   when: ansible_facts['os_family'] == "Debian"
   become: yes
 
@@ -58,6 +154,7 @@
       - docker-ce-cli
       - docker-buildx-plugin
       - docker-compose-plugin
+      - eza
       - fd-find
       - fonts-firacode
       - fzf
@@ -69,21 +166,27 @@
       - gpg
       - htop
       - jq
+      - keychain
       - libdb-dev
       - libffi-dev
       - libgdbm6
       - libgdbm-dev
       - libgmp-dev
       - libncurses5-dev
+      - libncurses-dev
       - libpq-dev
       - libreadline6-dev
       - libssl-dev
+      - libtool
       - libyaml-dev
       - make
       - memcached
+      - mise
       - neovim
+      - openssl
       - patch
       - pgcli
+      - pkg-config
       - postgresql
       - postgresql-client
       - pre-commit
@@ -93,12 +196,13 @@
       - ripgrep
       - rustc
       - shellcheck
-      - starship
       - tofu
-      - tlrc
+      - tealdeer
       - tmux
       - traceroute
       - tree
+      - trash-cli
+      - unzip
       - uuid-dev
       - vim
       - wget
@@ -109,6 +213,33 @@
     update_cache: yes
   when: ansible_facts['os_family'] == "Debian"
   become: yes
+
+- name: Install WSL packages
+  apt:
+    name:
+      - wslu
+    state: latest
+    update_cache: yes
+  when: ansible_facts['os_family'] == "Debian" and dotfiles_is_wsl
+  become: yes
+
+- name: Enable systemd in WSL
+  blockinfile:
+    path: /etc/wsl.conf
+    create: yes
+    mode: '0644'
+    marker: "# {mark} ANSIBLE MANAGED BLOCK - dotfiles"
+    block: |
+      [boot]
+      systemd=true
+  when: ansible_facts['os_family'] == "Debian" and dotfiles_is_wsl
+  become: yes
+
+- name: Install Starship on Debian
+  shell: mise use -g starship@latest
+  args:
+    executable: /bin/bash
+  when: ansible_facts['os_family'] == "Debian"
 
 - name: Install brew packages on macOS
   homebrew:
@@ -245,8 +376,16 @@
   when: ansible_facts['os_family'] == "Darwin"
 
 - name: Install task on Debian
-  apt:
-    deb: https://github.com/go-task/task/releases/latest/download/task_linux_amd64.deb
+  get_url:
+    url: https://taskfile.dev/install.sh
+    dest: /tmp/task-install.sh
+    mode: '0755'
+  when: ansible_facts['os_family'] == "Debian"
+
+- name: Run task installer on Debian
+  command: /tmp/task-install.sh -d -b /usr/local/bin
+  args:
+    creates: /usr/local/bin/task
   when: ansible_facts['os_family'] == "Debian"
   become: yes
 
@@ -258,11 +397,27 @@
   when: ansible_facts['os_family'] == "Debian"
   become: yes
 
-- name: Install mise on Debian
+- name: Set AWS CLI architecture on Debian
+  set_fact:
+    awscli_arch: "{{ 'x86_64' if ansible_facts['architecture'] == 'x86_64' else 'aarch64' if ansible_facts['architecture'] in ['aarch64', 'arm64'] else ansible_facts['architecture'] }}"
+  when: ansible_facts['os_family'] == "Debian"
+
+- name: Download AWS CLI installer on Debian
   get_url:
-    url: https://github.com/jdx/mise/releases/latest/download/mise-linux-x64
-    dest: /usr/local/bin/mise
-    mode: 0755
+    url: "https://awscli.amazonaws.com/awscli-exe-linux-{{ awscli_arch }}.zip"
+    dest: /tmp/awscliv2.zip
+    mode: '0644'
+  when: ansible_facts['os_family'] == "Debian"
+
+- name: Unpack AWS CLI installer on Debian
+  unarchive:
+    src: /tmp/awscliv2.zip
+    dest: /tmp
+    remote_src: yes
+  when: ansible_facts['os_family'] == "Debian"
+
+- name: Install AWS CLI on Debian
+  command: /tmp/aws/install --update
   when: ansible_facts['os_family'] == "Debian"
   become: yes
 
@@ -279,12 +434,6 @@
 
 - name: Install OpenCode
   shell: curl -fsSL https://opencode.ai/install | bash
-
-- name: Install Codex
-  npm:
-    name: "@openai/codex"
-    global: true
-    state: latest
 
 - name: Install Claude Code safety hook
   copy:

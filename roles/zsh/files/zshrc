@@ -1,5 +1,10 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+# Reuse one ssh-agent per login session and load the GitHub SSH key.
+if [ -x /usr/bin/keychain ] && [ -f "$HOME/.ssh/id_ed25519" ]; then
+  eval "$(/usr/bin/keychain --eval --quiet --agents ssh "$HOME/.ssh/id_ed25519")"
+fi
+
 # mise version manager
 eval "$(mise activate zsh)"
 
@@ -30,3 +35,6 @@ eval "$(direnv hook zsh)"
 # Initialize Starship prompt
 eval "$(starship init zsh)"
 export PATH="$HOME/.local/bin:$PATH"
+
+# opencode
+export PATH=/home/aliks/.opencode/bin:$PATH

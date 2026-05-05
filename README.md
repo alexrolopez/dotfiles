@@ -1,5 +1,5 @@
 # Alex's dotfiles
-Development environment for macOS and any apt-based linux distro (Ubuntu, Debian, etc).
+Development environment for macOS and apt-based Linux distros, with Ubuntu/Pop!_OS and Ubuntu on WSL2 as the primary Linux targets.
 Using [ansible] for the whole installation, plus a small bootstrap script (`install.sh`).
 
 This setup is tailored for my specific needs, **USE AT YOUR OWN RISK**.
@@ -32,6 +32,13 @@ sudo apt update
 sudo apt install git
 ```
 
+### Ubuntu on Windows WSL2
+- Install an Ubuntu WSL2 distribution from the Microsoft Store or with `wsl --install -d Ubuntu`.
+- Run this installer from inside the Linux filesystem, not from `/mnt/c/...`.
+- The bootstrap script runs with Bash, but the playbook sets your Ubuntu user shell to zsh.
+- The playbook enables systemd in `/etc/wsl.conf`; after the first run, restart WSL from Windows with `wsl --shutdown` and open Ubuntu again.
+- Docker Engine is installed inside WSL. If you prefer Docker Desktop's WSL integration, disable or skip the Docker tasks before running this playbook.
+
 ## Installation
 Create and add ssh key to github (https://github.com/settings/ssh/new), then:
 
@@ -49,9 +56,11 @@ GIT_USER_NAME="My Name" GIT_USER_EMAIL="my_email@example.com" ~/.dotfiles/instal
 ## Post-installation
 You might need to restart your terminal to see the changes.
 
-[Fira Code] nerd font is installed, it is recommended to use it as the terminal font, and to use a solarized color theme.
+[Fira Code] is installed for local Linux/macOS terminal apps; use a Nerd Font variant as the terminal font and a solarized color theme.
 
-In Linux, you might need to alias `bat` and `fd` to `batcat` and `fdfind`, respectively.
+For Ubuntu on WSL2, font rendering is controlled by Windows Terminal, not by packages installed inside Ubuntu. Install `CaskaydiaCove Nerd Font Mono` on Windows and set it as the font face for the Windows Terminal Ubuntu profile.
+
+On Linux, the shell config automatically handles distro-specific command names such as `batcat` and `fdfind`.
 
 ## Inspiration
 - https://medium.com/espinola-designs/manage-your-dotfiles-with-ansible-6dbedd5532bb (https://github.com/kespinola/dotfiles)

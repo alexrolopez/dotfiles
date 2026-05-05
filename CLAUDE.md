@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-This is an Ansible-based dotfiles repository for automating development environment setup on macOS and Ubuntu/Debian Linux.
+This is an Ansible-based dotfiles repository for automating development environment setup on macOS, Ubuntu/Pop!_OS, Debian, and Ubuntu on WSL2.
 
 ## Commands
 
@@ -65,8 +65,8 @@ roles/<name>/
 ## Version Management
 
 All language versions are managed via mise (defined in each role's `defaults/main.yml`):
-- Ruby: 3.3.5, 3.2.6
-- Node: 22.14.0, 18.18.0
+- Ruby: 3.4.7
+- Node: 22.14.0
 - Go: 1.25.4
 - Erlang: 27.0
 - Elixir: 1.18.2-otp-27
@@ -75,4 +75,5 @@ All language versions are managed via mise (defined in each role's `defaults/mai
 
 The playbook uses `ansible_facts['os_family']` to handle platform-specific tasks:
 - macOS: Uses Homebrew, installs Colima (vz backend) for containers
-- Linux: Uses apt, adds external repos (OpenTofu, Redis, Docker), sets zsh as default shell
+- Linux: Uses apt, adds external repos (OpenTofu, Redis, Docker, GitHub CLI, mise, eza), sets zsh as default shell
+- WSL2: Detects WSL, installs WSL helpers, and enables systemd in `/etc/wsl.conf`

@@ -1,5 +1,13 @@
-- name: Set default shell to zsh
-  command: chsh -s /bin/zsh {{ ansible_facts.env.USER}}
+- name: Find zsh path on Debian
+  command: which zsh
+  register: zsh_path
+  changed_when: false
+  when: ansible_facts['os_family'] == "Debian"
+
+- name: Set default shell to zsh on Debian
+  user:
+    name: "{{ ansible_facts.env.USER }}"
+    shell: "{{ zsh_path.stdout }}"
   when: ansible_facts['os_family'] == "Debian"
   become: yes
 

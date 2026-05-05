@@ -1,3 +1,8 @@
+- name: Select Erlang wxWidgets package on Debian
+  set_fact:
+    erlang_wxwidgets_package: "{{ 'libwxgtk3.0-gtk3-dev' if ansible_facts['distribution'] == 'Ubuntu' and ansible_facts['distribution_version'] is version('24.04', '<') else 'libwxgtk3.2-dev' }}"
+  when: ansible_facts['os_family'] == "Debian"
+
 - name: Install erlang dependencies
   package:
     name: "{{ item }}"
@@ -6,18 +11,18 @@
   with_items:
     - autoconf
     - build-essential
-    - libncurses5-dev
-    - libwxgtk3.0-gtk3-dev
+    - default-jdk
+    - fop
     - libgl1-mesa-dev
     - libglu1-mesa-dev
+    - libncurses5-dev
+    - libncurses-dev
     - libpng-dev
     - libssh-dev
+    - "{{ erlang_wxwidgets_package }}"
     - unixodbc-dev
     - xsltproc
-    - fop
     - libxml2-utils
-    - libncurses-dev
-    - openjdk-11-jdk
   when: ansible_facts['os_family'] == "Debian"
 
 - name: Install erlang dependencies (macOS)
@@ -41,4 +46,4 @@
 - name: Set global version for erlang to {{versions[0]}}
   shell: mise use -g erlang@{{versions[0]}}
   args:
-    executable: /bin/bash 
+    executable: /bin/bash
