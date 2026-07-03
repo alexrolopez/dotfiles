@@ -14,6 +14,7 @@ I recommend understanding everything first, and then bulding a setup for your sp
 - ruby: Installs various Ruby versions and default gems (using mise).
 - node: Installs Node versions and default npm packages (using mise).
 - golang: Installs Go (using mise).
+- python: Installs Python versions and upgrades pip (using mise).
 
 ## Pre-requisites
 

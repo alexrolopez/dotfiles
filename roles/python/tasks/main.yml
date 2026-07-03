@@ -1,0 +1,15 @@
+- name: Install python versions
+  shell: mise install python@{{item}}
+  args:
+    executable: /bin/bash
+  loop: "{{versions}}"
+
+- name: Set global version for python to {{versions[0]}}
+  shell: mise use -g python@{{versions[0]}}
+  args:
+    executable: /bin/bash
+
+- name: Ensure pip is up to date for python {{versions[0]}}
+  shell: mise exec python@{{versions[0]}} -- python -m pip install --upgrade pip
+  args:
+    executable: /bin/bash

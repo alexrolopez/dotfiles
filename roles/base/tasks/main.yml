@@ -172,13 +172,18 @@
       - libgdbm6
       - libgdbm-dev
       - libgmp-dev
+      - liblzma-dev
       - libncurses5-dev
       - libncurses-dev
       - libpq-dev
       - libreadline6-dev
+      - libsqlite3-dev
       - libssl-dev
       - libtool
+      - libxml2-dev
+      - libxmlsec1-dev
       - libyaml-dev
+      - libbz2-dev
       - make
       - memcached
       - mise
@@ -198,6 +203,7 @@
       - shellcheck
       - tofu
       - tealdeer
+      - tk-dev
       - tmux
       - traceroute
       - tree
@@ -207,6 +213,7 @@
       - vim
       - wget
       - xclip
+      - xz-utils
       - zlib1g-dev
       - zsh
     state: latest
@@ -297,13 +304,17 @@
       - semgrep
       - shellcheck
       - sops
+      - sqlite3
       - starship
       - opentofu
+      - tcl-tk
       - tlrc
       - tmux
       - trash
       - tree
       - wget
+      - xz
+      - zlib
     state: latest
     update_homebrew: true
   when: ansible_facts['os_family'] == "Darwin"

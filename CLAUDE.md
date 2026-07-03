@@ -45,6 +45,7 @@ ansible-playbook -i hosts dotfiles.yml --list-tags
 | `golang` | Go installation via mise |
 | `erlang` | Erlang installation via mise |
 | `elixir` | Elixir installation via mise |
+| `python` | Python installation via mise |
 
 **Role Structure Pattern:**
 ```
@@ -70,6 +71,7 @@ All language versions are managed via mise (defined in each role's `defaults/mai
 - Go: 1.25.4
 - Erlang: 27.0
 - Elixir: 1.18.2-otp-27
+- Python: 3.14.6
 
 ## Platform Differences
 
