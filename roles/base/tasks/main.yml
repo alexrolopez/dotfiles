@@ -248,9 +248,9 @@
     executable: /bin/bash
   when: ansible_facts['os_family'] == "Debian"
 
-- name: Install brew packages on macOS
-  homebrew:
-    name:
+- name: Define macOS brew packages
+  set_fact:
+    dotfiles_brew_packages:
       - actionlint
       - age
       - ansible
@@ -315,8 +315,30 @@
       - wget
       - xz
       - zlib
-    state: latest
-    update_homebrew: true
+  when: ansible_facts['os_family'] == "Darwin"
+
+- name: Update homebrew on macOS
+  shell: brew update
+  args:
+    executable: /bin/bash
+  environment:
+    PATH: "/usr/local/bin:/opt/homebrew/bin:/home/linuxbrew/.linuxbrew/bin:{{ ansible_env.PATH }}"
+  when: ansible_facts['os_family'] == "Darwin"
+
+- name: Install brew packages on macOS
+  shell: brew install {{ dotfiles_brew_packages | join(' ') }}
+  args:
+    executable: /bin/bash
+  environment:
+    PATH: "/usr/local/bin:/opt/homebrew/bin:/home/linuxbrew/.linuxbrew/bin:{{ ansible_env.PATH }}"
+  when: ansible_facts['os_family'] == "Darwin"
+
+- name: Upgrade brew packages on macOS
+  shell: brew upgrade {{ dotfiles_brew_packages | join(' ') }}
+  args:
+    executable: /bin/bash
+  environment:
+    PATH: "/usr/local/bin:/opt/homebrew/bin:/home/linuxbrew/.linuxbrew/bin:{{ ansible_env.PATH }}"
   when: ansible_facts['os_family'] == "Darwin"
 
 - name: Check if session-manager-plugin is installed (macOS)
